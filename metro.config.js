@@ -8,5 +8,5 @@ const { withNativeWind } = require('nativewind/metro');
 const config = getDefaultConfig(__dirname);
 
 module.exports = withNativeWind(wrapWithReanimatedMetroConfig(config), {
-  input: '@/app/global.css',
+  input: './src/app/global.css',
 });

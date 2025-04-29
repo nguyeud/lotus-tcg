@@ -13,15 +13,17 @@ export async function getAllPokemonTcgSets(): Promise<PokemonTCG.Set[]> {
  * @param id Id of set
  * @returns Pokemon TCG set
  */
-export async function getPokemonTcgSetById(id: string): Promise<PokemonTCG.Set | null> {
+export async function getPokemonTcgSetById(
+  id: string
+): Promise<PokemonTCG.Set | null> {
   return await PokemonTCG.findSetByID(id)
-  .then(response => {
-    return response;
-  })
-  .catch(error => {
-    console.warn(error);
-    return null;
-  });
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      console.warn(error);
+      return null;
+    });
 }
 
 /**
@@ -29,7 +31,9 @@ export async function getPokemonTcgSetById(id: string): Promise<PokemonTCG.Set |
  * @param ids List of set ids
  * @returns List of Pokemon TCG sets
  */
-export async function getPokemonTcgSetsById(ids: string[]): Promise<PokemonTCG.Set[]> {
+export async function getPokemonTcgSetsById(
+  ids: string[]
+): Promise<PokemonTCG.Set[]> {
   const sets: PokemonTCG.Set[] = [];
 
   for (const id of ids) {
@@ -47,14 +51,16 @@ export async function getPokemonTcgSetsById(ids: string[]): Promise<PokemonTCG.S
  * @param params Query parameters
  * @returns List of Pokemon TCG sets
  */
-export async function getPokemonTcgSetsByQuery(params: PokemonTCG.Parameter): Promise<PokemonTCG.Set[] | null> {
+export async function getPokemonTcgSetsByQuery(
+  params: PokemonTCG.Parameter
+): Promise<PokemonTCG.Set[] | null> {
   return await PokemonTCG.findSetsByQueries(params)
-  .then(response => {
-    console.log(response);
-    return response;
-  })
-  .catch(error => {
-    console.warn(error);
-    return null;
-  });
+    .then((response) => {
+      console.log(response);
+      return response;
+    })
+    .catch((error) => {
+      console.warn(error);
+      return null;
+    });
 }

@@ -22,6 +22,7 @@ module.exports = {
     'react/destructuring-assignment': 'off', // Vscode doesn't support automatically destructuring, it's a pain to add a new variable
     'react/require-default-props': 'off', // Allow non-defined react props as undefined
     '@typescript-eslint/comma-dangle': 'off', // Avoid conflict rule between Eslint and Prettier
+    'import/namespace': 'warn',
     'import/prefer-default-export': 'off', // Named export is easier to refactor automatically
     'import/no-cycle': ['error', { maxDepth: '∞' }],
     'tailwindcss/classnames-order': [

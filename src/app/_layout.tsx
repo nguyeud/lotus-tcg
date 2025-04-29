@@ -1,42 +1,72 @@
-import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { DarkTheme, DefaultTheme, ThemeProvider } from "@react-navigation/native";
-import "react-native-reanimated";
-import * as SplashScreen from "expo-splash-screen";
-import { StatusBar } from "expo-status-bar";
-import { Stack } from "expo-router";
-import { useFonts } from "expo-font";
-import { useEffect } from "react";
+import 'react-native-reanimated';
+import './global.css';
 
-import { useColorScheme } from "@/hooks/useColorScheme";
+import {
+  Inter_400Regular,
+  Inter_500Medium,
+  Inter_600SemiBold,
+  Inter_700Bold,
+  Inter_900Black,
+} from '@expo-google-fonts/inter';
+import {
+  DarkTheme,
+  DefaultTheme,
+  ThemeProvider,
+} from '@react-navigation/native';
+import { useFonts } from 'expo-font';
+import { Stack } from 'expo-router';
+import * as SplashScreen from 'expo-splash-screen';
+import { StatusBar } from 'expo-status-bar';
+import { useEffect, useState } from 'react';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+
+import { Box } from '@/components/ui/box';
+import { Button, ButtonText } from '@/components/ui/button';
+import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
+  const [colorMode, setColorMode] = useState<'light' | 'dark'>('light');
+  const [fontsLoaded] = useFonts({
+    Inter_400Regular,
+    Inter_500Medium,
+    Inter_600SemiBold,
+    Inter_700Bold,
+    Inter_900Black,
   });
 
   useEffect(() => {
-    if (loaded) {
+    if (fontsLoaded) {
       SplashScreen.hideAsync();
     }
-  }, [loaded]);
+  }, [fontsLoaded]);
 
-  if (!loaded) {
+  if (!fontsLoaded) {
     return null;
   }
 
   return (
     <GestureHandlerRootView>
-      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="+not-found" />
-        </Stack>
-        <StatusBar style="auto" />
-      </ThemeProvider>
+      <GluestackUIProvider mode={colorMode}>
+        <ThemeProvider value={colorMode === 'dark' ? DarkTheme : DefaultTheme}>
+          <Stack>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="+not-found" />
+          </Stack>
+          <Box className="bg-primary flex-1">
+            <Button
+              onPress={() => {
+                setColorMode(colorMode === 'light' ? 'dark' : 'light');
+              }}
+            >
+              <ButtonText>Toggle color mode</ButtonText>
+            </Button>
+          </Box>
+          <StatusBar style="auto" />
+        </ThemeProvider>
+      </GluestackUIProvider>
     </GestureHandlerRootView>
   );
 }
