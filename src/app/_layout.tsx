@@ -20,15 +20,13 @@ import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
-import { Box } from '@/components/ui/box';
-import { Button, ButtonText } from '@/components/ui/button';
 import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-  const [colorMode, setColorMode] = useState<'light' | 'dark'>('light');
+  const [colorMode] = useState<'light' | 'dark'>('light');
   const [fontsLoaded] = useFonts({
     Inter_400Regular,
     Inter_500Medium,

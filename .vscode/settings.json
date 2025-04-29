@@ -4,7 +4,8 @@
   "conventionalCommits.scopes": [
     "initial-setup",
     "api",
-    "ui"
+    "ui",
+    "mobile"
   ],
   "workbench.colorCustomizations": {}
 }
