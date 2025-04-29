@@ -17,18 +17,30 @@ import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import React from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
-import { Box } from '@/components/ui/box';
-import { Button, ButtonText } from '@/components/ui/button';
+import { Fab, FabIcon } from '@/components/ui/fab';
 import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
+import { MoonIcon, SunIcon } from '@/components/ui/icon';
+
+let defaultTheme: 'dark' | 'light' = 'light';
+
+type ThemeContextType = {
+  colorMode?: 'dark' | 'light';
+  toggleColorMode?: () => void;
+};
+
+export const ThemeContext = React.createContext<ThemeContextType>({
+  colorMode: 'light',
+  toggleColorMode: () => {},
+});
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-  const [colorMode, setColorMode] = useState<'light' | 'dark'>('light');
   const [fontsLoaded] = useFonts({
     Inter_400Regular,
     Inter_500Medium,
@@ -36,6 +48,14 @@ export default function RootLayout() {
     Inter_700Bold,
     Inter_900Black,
   });
+
+  const [colorMode, setColorMode] = React.useState<'dark' | 'light'>(
+    defaultTheme
+  );
+
+  const toggleColorMode = async () => {
+    setColorMode((prev) => (prev === 'light' ? 'dark' : 'light'));
+  };
 
   useEffect(() => {
     if (fontsLoaded) {
@@ -56,6 +76,16 @@ export default function RootLayout() {
             <Stack.Screen name="+not-found" />
           </Stack>
           <StatusBar style="auto" />
+          <Fab
+            size="md"
+            placement="bottom right"
+            isHovered={false}
+            isDisabled={false}
+            isPressed={false}
+            onPress={toggleColorMode}
+          >
+            <FabIcon as={colorMode === 'light' ? MoonIcon : SunIcon} />
+          </Fab>
         </ThemeProvider>
       </GluestackUIProvider>
     </GestureHandlerRootView>
