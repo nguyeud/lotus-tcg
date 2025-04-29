@@ -12,6 +12,7 @@
     extensions = [
       "msjsdiag.vscode-react-native"
       "vivaxy.vscode-conventional-commits"
+      "ms-vscode.js-debug"
     ];
     workspace = {
       # Runs when a workspace is first created with this `dev.nix` file
