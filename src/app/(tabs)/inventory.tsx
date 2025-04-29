@@ -2,7 +2,7 @@ import { PokemonTCG } from 'pokemon-tcg-sdk-typescript';
 import { ActivityIndicator, FlatList, Text, View } from 'react-native';
 import { useEffect, useState } from 'react';
 
-import { getPokemonTcgCardsById } from '@/api/pokemon-tcg-api/pokemon-tcg-api-cards';
+import { getPokemonTcgCardsById } from '@/api/pokemon-tcg/pokemon-tcg-cards';
 
 // TODO: After Firebase implementation, remove constant
 const dummyCardIds: string[] = [
