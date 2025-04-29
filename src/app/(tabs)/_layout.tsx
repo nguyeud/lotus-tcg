@@ -30,6 +30,13 @@ export default function TabLayout() {
             title: 'Explore',
           }}
         />
+        <Drawer.Screen
+          name="inventory" // This is the name of the page and must match the url from root
+          options={{
+            drawerLabel: 'Inventory',
+            title: 'Inventory',
+          }}
+        />
       </Drawer>
     );
   }
@@ -63,6 +70,15 @@ export default function TabLayout() {
         name="explore"
         options={{
           title: 'Explore',
+          tabBarIcon: ({ color }) => (
+            <IconSymbol size={28} name="paperplane.fill" color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="inventory"
+        options={{
+          title: 'Inventory',
           tabBarIcon: ({ color }) => (
             <IconSymbol size={28} name="paperplane.fill" color={color} />
           ),
