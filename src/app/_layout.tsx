@@ -55,15 +55,6 @@ export default function RootLayout() {
             <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
             <Stack.Screen name="+not-found" />
           </Stack>
-          <Box className="bg-primary flex-1">
-            <Button
-              onPress={() => {
-                setColorMode(colorMode === 'light' ? 'dark' : 'light');
-              }}
-            >
-              <ButtonText>Toggle color mode</ButtonText>
-            </Button>
-          </Box>
           <StatusBar style="auto" />
         </ThemeProvider>
       </GluestackUIProvider>

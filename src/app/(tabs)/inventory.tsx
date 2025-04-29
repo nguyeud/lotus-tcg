@@ -6,6 +6,13 @@ import { getPokemonTcgCardsById } from '@/api/pokemon-tcg/pokemon-tcg-cards';
 import { Grid, GridItem } from '@/components/ui/grid';
 import { ScrollView } from '@/components/ui/scroll-view';
 import { Text } from '@/components/ui/text';
+import { Card } from '@/components/ui/card';
+import { Box } from '@/components/ui/box';
+import { Button, ButtonText } from '@/components/ui/button';
+import { VStack } from '@/components/ui/vstack';
+import { Heading } from '@/components/ui/heading';
+import { Image } from '@/components/ui/image';
+import { Center } from '@/components/ui/center';
 
 // TODO: After Firebase implementation, remove constant
 const dummyCardIds: string[] = [
@@ -70,23 +77,56 @@ export default function Inventory() {
 
   return (
     <ScrollView>
-      <Grid
-        _extra={{
-          className: '',
-        }}
-      >
-        {data.map((card: PokemonTCG.Card) => {
-          return (
-            <GridItem
-              _extra={{
-                className: '',
-              }}
-            >
-              <Text>{card.name}</Text>
-            </GridItem>
-          );
-        })}
-      </Grid>
+        <Grid
+          _extra={{
+            className: 'p-4 gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5',
+          }}
+        >
+          {data.map((card: PokemonTCG.Card) => {
+            return (
+              <GridItem
+                key={card.id}
+                _extra={{
+                  className: 'col-span-1',
+                }}
+              >
+                <Card className="rounded-lg w-full">
+                  <Image
+                    source={{
+                      uri: card.images.large
+                    }}
+                    className="rounded-md h-full w-full aspect-[3/4]"
+                    alt="image"
+                  />
+                  <VStack className="mb-4">
+                    <Heading size="md" className="py-2">
+                      {card.name}
+                    </Heading>
+                    <Text className="text-sm font-normal text-typography-700">
+                      {card.set.series}
+                    </Text>
+                    <Text size="sm">
+                      {card.set.name}
+                    </Text>
+                  </VStack>
+                  <Box className="flex-col sm:flex-row">
+                    <Button className="px-4 py-2 mr-0 mb-3 sm:mr-3 sm:mb-0 sm:flex-1">
+                      <ButtonText size="sm">Add</ButtonText>
+                    </Button>
+                    <Button
+                      variant="outline"
+                      className="px-4 py-2 border-outline-300 sm:flex-1"
+                    >
+                      <ButtonText size="sm" className="text-typography-600">
+                        View
+                      </ButtonText>
+                    </Button>
+                  </Box>
+                </Card>
+              </GridItem>
+            );
+          })}
+        </Grid>
     </ScrollView>
   );
 }
