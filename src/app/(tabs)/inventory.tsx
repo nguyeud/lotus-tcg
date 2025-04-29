@@ -1,8 +1,11 @@
 import { PokemonTCG } from 'pokemon-tcg-sdk-typescript';
-import { ActivityIndicator, FlatList, Text, View } from 'react-native';
 import { useEffect, useState } from 'react';
+import { ActivityIndicator } from 'react-native';
 
 import { getPokemonTcgCardsById } from '@/api/pokemon-tcg/pokemon-tcg-cards';
+import { Grid, GridItem } from '@/components/ui/grid';
+import { ScrollView } from '@/components/ui/scroll-view';
+import { Text } from '@/components/ui/text';
 
 // TODO: After Firebase implementation, remove constant
 const dummyCardIds: string[] = [
@@ -61,17 +64,29 @@ export default function Inventory() {
       });
   }, []);
 
+  if (isLoading) {
+    return <ActivityIndicator />;
+  }
+
   return (
-    <View style={{ flex: 1, padding: 24 }}>
-      {isLoading ? (
-        <ActivityIndicator />
-      ) : (
-        <FlatList
-          data={data}
-          keyExtractor={({ id }) => id}
-          renderItem={({ item }) => <Text>{item.name}</Text>}
-        />
-      )}
-    </View>
+    <ScrollView>
+      <Grid
+        _extra={{
+          className: '',
+        }}
+      >
+        {data.map((card: PokemonTCG.Card) => {
+          return (
+            <GridItem
+              _extra={{
+                className: '',
+              }}
+            >
+              <Text>{card.name}</Text>
+            </GridItem>
+          );
+        })}
+      </Grid>
+    </ScrollView>
   );
 }
