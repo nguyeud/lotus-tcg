@@ -1,11 +1,6 @@
 {
   "IDX.aI.enableInlineCompletion": true,
   "IDX.aI.enableCodebaseIndexing": true,
-  "conventionalCommits.scopes": [
-    "initial-setup",
-    "api",
-    "ui",
-    "mobile"
-  ],
+  "conventionalCommits.scopes": ["initial-setup", "api", "ui", "mobile"],
   "workbench.colorCustomizations": {}
 }
