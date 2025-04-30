@@ -17,14 +17,16 @@ import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
-import { useEffect } from 'react';
+import { MoonIcon, SunIcon } from 'lucide-react-native';
+import { createContext, useEffect, useState } from 'react';
 import React from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
+import { Header } from '@/components/Header';
 import { Fab, FabIcon } from '@/components/ui/fab';
 import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
-import { MoonIcon, SunIcon } from '@/components/ui/icon';
 
+// Set theme
 let defaultTheme: 'dark' | 'light' = 'light';
 
 type ThemeContextType = {
@@ -32,7 +34,7 @@ type ThemeContextType = {
   toggleColorMode?: () => void;
 };
 
-export const ThemeContext = React.createContext<ThemeContextType>({
+export const ThemeContext = createContext<ThemeContextType>({
   colorMode: 'light',
   toggleColorMode: () => {},
 });
@@ -49,9 +51,7 @@ export default function RootLayout() {
     Inter_900Black,
   });
 
-  const [colorMode, setColorMode] = React.useState<'dark' | 'light'>(
-    defaultTheme
-  );
+  const [colorMode, setColorMode] = useState<'dark' | 'light'>(defaultTheme);
 
   const toggleColorMode = async () => {
     setColorMode((prev) => (prev === 'light' ? 'dark' : 'light'));
@@ -71,8 +71,10 @@ export default function RootLayout() {
     <GestureHandlerRootView>
       <GluestackUIProvider mode={colorMode}>
         <ThemeProvider value={colorMode === 'dark' ? DarkTheme : DefaultTheme}>
+          <Header />
           <Stack>
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            {/* <Stack.Screen name="(tabs)" options={{ headerShown: false }} /> */}
+            <Stack.Screen name="index" options={{ headerShown: false }} />
             <Stack.Screen name="+not-found" />
           </Stack>
           <StatusBar style="auto" />

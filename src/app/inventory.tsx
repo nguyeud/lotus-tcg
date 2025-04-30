@@ -60,6 +60,7 @@ export default function Inventory() {
   useEffect(() => {
     getPokemonTcgCardsById(dummyCardIds)
       .then((response) => {
+        console.log(response);
         setData(response);
       })
       .catch((error) => {

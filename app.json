@@ -34,7 +34,13 @@
           "backgroundColor": "#ffffff"
         }
       ],
-      "expo-font"
+      "expo-font",
+      [
+        "expo-asset",
+        {
+          "assets": ["./src/assets/images/lotus-tcg-logo.png"]
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true
