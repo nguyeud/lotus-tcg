@@ -7,7 +7,7 @@ import { HStack } from './ui/hstack';
 import { Icon } from './ui/icon';
 import { Modal, ModalBackdrop, ModalBody, ModalContent } from './ui/modal';
 import { Pressable } from './ui/pressable';
-import { commonStyles } from './ui/styles';
+import { commonStyles } from './styles';
 
 interface SearchBarModalProps {
   readonly showModal: boolean;
@@ -32,7 +32,8 @@ export const SearchBarModal = ({ ...props }: SearchBarModalProps) => {
         size="full"
         style={{
           ...styles.modalContentContainer,
-          ...commonStyles.centerContent,
+          ...commonStyles.centerAlignItems,
+          ...commonStyles.centerContent
         }}
       >
         <ModalBody

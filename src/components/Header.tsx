@@ -11,10 +11,10 @@ import { HStack } from './ui/hstack';
 import { Icon } from './ui/icon';
 import { Link } from './ui/link';
 import { Pressable } from './ui/pressable';
-import { commonStyles } from './ui/styles';
+import { commonStyles } from './styles';
 
 export const Header = () => {
-  const responsiveContainerStyle = "w-full sm:w-4/5"
+  const responsiveContainerStyle = "w-full sm:w-4/5 max-w-5xl"
   const iconSize = 24;
 
   const [showSearchBarModal, setShowSearchBarModal] = useState<true | false>(
@@ -28,7 +28,7 @@ export const Header = () => {
   return (
     <Box
       id="header-container"
-      style={commonStyles.centerContent}
+      style={{...commonStyles.centerAlignItems, ...commonStyles.centerContent}}
     >
       <HStack
         id="header-container-stack"
@@ -48,7 +48,7 @@ export const Header = () => {
             <Icon as={() => Search({ width: iconSize })} />
           </Pressable>
         </HStack>
-        <HStack>
+        <HStack id="header-container-middle-stack" className='relative'>
           <HeaderLogo />
         </HStack>
         <HStack

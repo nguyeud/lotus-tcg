@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { Search } from './icons/Search';
 import { Input, InputField, InputIcon, InputSlot } from './ui/input';
-import { commonStyles } from './ui/styles';
+import { commonStyles } from './styles';
 
 export const SearchBar = () => {
   const responsiveContainerStyle = "flex-1"
