@@ -3,6 +3,8 @@ import { Pressable } from './ui/pressable';
 
 export const HeaderLogo = () => {
   const assetFile = '@/assets/images/lotus-tcg-logo.png';
+  const imageWidth = '12';
+  const imageHeight = '8';
 
   return (
     <Pressable id="header-logo-pressable">
@@ -10,7 +12,7 @@ export const HeaderLogo = () => {
         id="header-logo-pressable-image"
         source={require(assetFile)}
         alt="Lotus TCG logo"
-        className="h-8 w-12"
+        className={`h-${imageHeight} w-${imageWidth}`}
       />
     </Pressable>
   );

@@ -8,6 +8,8 @@ interface InventoryGridProps {
 }
 
 export const InventoryGrid = ({ ...props }: InventoryGridProps) => {
+  const responsiveContainerStyle = "w-full sm:w-4/5"
+  
   return (
     <Grid
       // style={commonStyles.largeWidthContainer}

@@ -14,6 +14,9 @@ import { Pressable } from './ui/pressable';
 import { commonStyles } from './ui/styles';
 
 export const Header = () => {
+  const responsiveContainerStyle = "w-full sm:w-4/5"
+  const iconSize = 24;
+
   const [showSearchBarModal, setShowSearchBarModal] = useState<true | false>(
     false
   );
@@ -25,11 +28,7 @@ export const Header = () => {
   return (
     <Box
       id="header-container"
-      style={{
-        // ...commonStyles.fullWidthContainer,
-        ...commonStyles.centerContent,
-      }}
-      className="md:4/5 w-full"
+      style={commonStyles.centerContent}
     >
       <HStack
         id="header-container-stack"
@@ -37,7 +36,7 @@ export const Header = () => {
           ...styles.container,
           ...commonStyles.spaceBetweenContent,
         }}
-        className="w-full"
+        className={responsiveContainerStyle}
       >
         <HStack id="header-container-left-stack">
           <Pressable
@@ -46,7 +45,7 @@ export const Header = () => {
               setShowSearchBarModal(true);
             }}
           >
-            <Icon as={() => Search({ width: 24 })} />
+            <Icon as={() => Search({ width: iconSize })} />
           </Pressable>
         </HStack>
         <HStack>
@@ -57,10 +56,10 @@ export const Header = () => {
           style={commonStyles.iconContainer}
         >
           <Link id="header-container-account-link">
-            <Icon as={() => CircleUserRound({ width: 24 })} />
+            <Icon as={() => CircleUserRound({ width: iconSize })} />
           </Link>
           <Link id="header-container-cart-link">
-            <Icon as={() => ShoppingBag({ width: 24 })} />
+            <Icon as={() => ShoppingBag({ width: iconSize })} />
           </Link>
         </HStack>
       </HStack>

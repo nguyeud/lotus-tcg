@@ -28,7 +28,7 @@ export const commonStyles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1,
-    borderRadius: 6,
+    borderRadius: 4,
   },
   iconContainer: {
     gap: 18,
