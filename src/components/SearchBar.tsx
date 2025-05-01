@@ -1,33 +1,34 @@
-import { Search } from 'lucide-react-native';
-import React from 'react';
-import { StyleSheet } from 'react-native';
+import React, { useState } from 'react';
 
-import { Box } from './ui/box';
+import { Search } from './icons/Search';
 import { Input, InputField, InputIcon, InputSlot } from './ui/input';
+import { commonStyles } from './ui/styles';
 
 export const SearchBar = () => {
+  const [searchInput, setSearchInput] = useState<string>('');
+
   return (
-    <Box style={styles.container}>
-      <Input size="md">
-        <InputSlot style={styles.inputContainer}>
-          <InputIcon as={Search} />
-        </InputSlot>
-        <InputField
-          type="text"
-          placeholder="Search..."
-          autoFocus={true}
-          selectTextOnFocus={true}
-        />
-      </Input>
-    </Box>
+    <Input id="search-bar-container" className="flex-1">
+      <InputSlot
+        id="search-bar-container-icon"
+        style={commonStyles.inputIconContainer}
+      >
+        <InputIcon as={() => Search({ width: 20 })} />
+      </InputSlot>
+      <InputField
+        id="search-bar-container-input"
+        type="text"
+        placeholder="Search..."
+        onChangeText={(input) => {
+          setSearchInput(input);
+        }}
+        onKeyPress={(input) => {
+          if (input.key === 'Enter') {
+            console.log(searchInput);
+          }
+        }}
+        selectTextOnFocus={true}
+      />
+    </Input>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    width: `${100}%`,
-  },
-  inputContainer: {
-    paddingLeft: 12,
-  },
-});

@@ -2,7 +2,12 @@ const path = require('path');
 
 // https://docs.expo.dev/guides/using-eslint/
 module.exports = {
-  extends: ['expo', 'plugin:tailwindcss/recommended', 'prettier'],
+  extends: [
+    'expo',
+    'plugin:tailwindcss/recommended',
+    'prettier',
+    'plugin:prettier/recommended',
+  ],
 
   plugins: [
     'prettier',
@@ -14,7 +19,6 @@ module.exports = {
   ],
 
   rules: {
-    'prettier/prettier': 'warn',
     'max-params': ['error', 3], // Limit the number of parameters in a function to use object instead
     'max-lines-per-function': ['warn', 100],
     'react/display-name': 'off',
@@ -44,6 +48,14 @@ module.exports = {
         caughtErrorsIgnorePattern: '^_',
       },
     ],
+
+    'prettier/prettier': [
+      'warn',
+      {},
+      {
+        usePrettierrc: true,
+      },
+    ],
   },
 
   overrides: [
@@ -53,6 +65,7 @@ module.exports = {
         project: './tsconfig.json',
       },
     },
+
     // Configuration for  translations files (i18next)
     {
       files: ['src/translations/*.json'],
@@ -87,8 +100,9 @@ module.exports = {
         ],
       },
     },
+
+    // Configuration for testing files
     {
-      // Configuration for testing files
       files: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
       extends: ['plugin:testing-library/react'],
     },
