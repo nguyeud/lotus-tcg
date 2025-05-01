@@ -3,11 +3,11 @@ import { StyleSheet } from 'react-native';
 
 import { SlidersHorizontal } from './icons/SlidersHorizontal';
 import { SearchBar } from './SearchBar';
+import { commonStyles } from './styles';
 import { HStack } from './ui/hstack';
 import { Icon } from './ui/icon';
 import { Modal, ModalBackdrop, ModalBody, ModalContent } from './ui/modal';
 import { Pressable } from './ui/pressable';
-import { commonStyles } from './styles';
 
 interface SearchBarModalProps {
   readonly showModal: boolean;
@@ -33,7 +33,7 @@ export const SearchBarModal = ({ ...props }: SearchBarModalProps) => {
         style={{
           ...styles.modalContentContainer,
           ...commonStyles.centerAlignItems,
-          ...commonStyles.centerContent
+          ...commonStyles.centerContent,
         }}
       >
         <ModalBody

@@ -1,12 +1,12 @@
 import { PokemonTCG } from 'pokemon-tcg-sdk-typescript';
 
+import { commonStyles } from './styles';
 import { Card } from './ui/card';
 import { Heading } from './ui/heading';
 import { HStack } from './ui/hstack';
 import { Image } from './ui/image';
 import { Text } from './ui/text';
 import { VStack } from './ui/vstack';
-import { commonStyles } from './styles';
 
 interface InventoryCardProps {
   readonly pokemonTcgCard: PokemonTCG.Card;
@@ -15,12 +15,13 @@ interface InventoryCardProps {
 export const InventoryCard = ({ ...props }: InventoryCardProps) => {
   const imageStyle = 'aspect-square h-full w-full rounded-lg';
   const textSize = 'sm';
-  const textWeight = 'font-light'
+  const textWeight = 'font-light';
 
   return (
-    <Card 
+    <Card
       id={`inventory-grid-item-${props.pokemonTcgCard.id}`}
-      style={commonStyles.cardContainer}>
+      style={commonStyles.cardContainer}
+    >
       <Image
         id={`inventory-grid-item-image-${props.pokemonTcgCard.id}`}
         className={imageStyle}
@@ -35,7 +36,7 @@ export const InventoryCard = ({ ...props }: InventoryCardProps) => {
           ...commonStyles.spaceBetweenContent,
           ...commonStyles.noSpacingContainer,
         }}
-        className='flex-col sm:flex-row'
+        className="flex-col sm:flex-row"
       >
         <VStack>
           <Heading
@@ -52,7 +53,10 @@ export const InventoryCard = ({ ...props }: InventoryCardProps) => {
             {props.pokemonTcgCard.set.name}
           </Text>
         </VStack>
-        <Text id={`inventory-grid-item-price-${props.pokemonTcgCard.id}`} className={textWeight}>
+        <Text
+          id={`inventory-grid-item-price-${props.pokemonTcgCard.id}`}
+          className={textWeight}
+        >
           $999.99
         </Text>
       </HStack>

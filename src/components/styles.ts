@@ -46,6 +46,6 @@ export const commonStyles = StyleSheet.create({
     padding: 4,
     gap: 4,
     borderRadius: 16,
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
   },
 });

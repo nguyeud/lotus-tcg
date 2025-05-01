@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
 import { Search } from './icons/Search';
-import { Input, InputField, InputIcon, InputSlot } from './ui/input';
 import { commonStyles } from './styles';
+import { Input, InputField, InputIcon, InputSlot } from './ui/input';
 
 export const SearchBar = () => {
-  const responsiveContainerStyle = "flex-1"
+  const responsiveContainerStyle = 'flex-1';
   const iconSize = 20;
 
   const [searchInput, setSearchInput] = useState<string>('');
