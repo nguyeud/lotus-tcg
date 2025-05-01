@@ -1,116 +1,82 @@
-import { CircleUserRound, Search, ShoppingBag } from 'lucide-react-native';
-import React, { createContext, useState } from 'react';
+import React, { useState } from 'react';
 import { StyleSheet } from 'react-native';
 
+import { HeaderLogo } from './HeaderLogo';
+import { CircleUserRound } from './icons/CircleUserRound';
+import { Search } from './icons/Search';
+import { ShoppingBag } from './icons/ShoppingBag';
+import { SearchBarModal } from './SearchBarModal';
 import { Box } from './ui/box';
 import { HStack } from './ui/hstack';
 import { Icon } from './ui/icon';
-import { Image } from './ui/image';
-import { Input, InputField } from './ui/input';
 import { Link } from './ui/link';
 import { Pressable } from './ui/pressable';
-import { VStack } from './ui/vstack';
-
-// Set search bar visibility
-let defaultSearchBarVisibility: '' | 'hidden' = 'hidden';
-
-type SearchBarVisibilityContextType = {
-  searchBarVisibility: '' | 'hidden';
-  toggleSearchBarVisibility: () => void;
-};
-
-export const SearchBarVisibilityContext =
-  createContext<SearchBarVisibilityContextType>({
-    searchBarVisibility: 'hidden',
-    toggleSearchBarVisibility: () => {},
-  });
-
-export const HeaderLogo = () => {
-  return (
-    <Link>
-      <Image
-        source={require('@/assets/images/lotus-tcg-logo.png')}
-        className="size-14"
-        alt="logo"
-      />
-    </Link>
-  );
-};
+import { commonStyles } from './ui/styles';
 
 export const Header = () => {
-  const [searchBarVisibility, setSearchBarVisibility] = useState<'' | 'hidden'>(
-    defaultSearchBarVisibility
+  const [showSearchBarModal, setShowSearchBarModal] = useState<true | false>(
+    false
   );
 
-  const toggleSearchBarVisibility = async () => {
-    setSearchBarVisibility((prev) => (prev === '' ? 'hidden' : ''));
+  const closeSearchBarModal = () => {
+    setShowSearchBarModal(false);
   };
 
   return (
-    <>
-      <VStack style={styles.headerContainer} className="gap-4">
-        <HStack style={styles.headerStack}>
-          <HStack>
-            <Pressable onPress={toggleSearchBarVisibility}>
-              <Icon as={Search} size="xl" />
-            </Pressable>
-          </HStack>
-          <HStack>
-            <HeaderLogo />
-          </HStack>
-          <HStack style={styles.headerIconStack}>
-            <Link>
-              <Icon as={CircleUserRound} size="xl" />
-            </Link>
-            <Link>
-              <Icon as={ShoppingBag} size="xl" />
-            </Link>
-          </HStack>
+    <Box
+      id="header-container"
+      style={{
+        // ...commonStyles.fullWidthContainer,
+        ...commonStyles.centerContent,
+      }}
+      className="md:4/5 w-full"
+    >
+      <HStack
+        id="header-container-stack"
+        style={{
+          ...styles.container,
+          ...commonStyles.spaceBetweenContent,
+        }}
+        className="w-full"
+      >
+        <HStack id="header-container-left-stack">
+          <Pressable
+            id="header-container-search-pressable"
+            onPress={() => {
+              setShowSearchBarModal(true);
+            }}
+          >
+            <Icon as={() => Search({ width: 24 })} />
+          </Pressable>
         </HStack>
-        <Box
-          style={
-            '' === searchBarVisibility
-              ? styles.hiddenStack
-              : styles.searchBarStack
-          }
+        <HStack>
+          <HeaderLogo />
+        </HStack>
+        <HStack
+          id="header-container-right-stack"
+          style={commonStyles.iconContainer}
         >
-          <Input size="md">
-            <InputField
-              type="text"
-              placeholder="Search..."
-              onFocus={() => {}}
-              onBlur={() => {}}
-            />
-          </Input>
-        </Box>
-      </VStack>
-    </>
+          <Link id="header-container-account-link">
+            <Icon as={() => CircleUserRound({ width: 24 })} />
+          </Link>
+          <Link id="header-container-cart-link">
+            <Icon as={() => ShoppingBag({ width: 24 })} />
+          </Link>
+        </HStack>
+      </HStack>
+      <SearchBarModal
+        showModal={showSearchBarModal}
+        closeModal={closeSearchBarModal}
+      />
+    </Box>
   );
 };
 
 const styles = StyleSheet.create({
-  hiddenStack: {
-    display: 'none',
-  },
-  headerContainer: {
+  container: {
     paddingTop: 20,
-    paddingRight: 36,
+    paddingRight: 24,
     paddingBottom: 20,
-    paddingLeft: 36,
-    width: `${100}%`,
-    minHeight: 20,
-  },
-  headerStack: {
-    width: `${100}%`,
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    minHeight: 40,
-  },
-  headerIconStack: {
-    gap: 24,
-  },
-  searchBarStack: {
-    paddingBottom: 8,
-    width: `${100}%`,
+    paddingLeft: 24,
   },
 });
