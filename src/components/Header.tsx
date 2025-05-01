@@ -4,7 +4,6 @@ import { StyleSheet } from 'react-native';
 import { HeaderLogo } from './HeaderLogo';
 import { CircleUserRound } from './icons/CircleUserRound';
 import { Search } from './icons/Search';
-import { ShoppingBag } from './icons/ShoppingBag';
 import { SearchBarModal } from './SearchBarModal';
 import { commonStyles } from './styles';
 import { Box } from './ui/box';
@@ -37,6 +36,7 @@ export const Header = () => {
         id="header-container-stack"
         style={{
           ...styles.container,
+          ...commonStyles.centerAlignItems,
           ...commonStyles.spaceBetweenContent,
         }}
         className={responsiveContainerStyle}
@@ -51,7 +51,7 @@ export const Header = () => {
             <Icon as={() => Search({ width: iconSize })} />
           </Pressable>
         </HStack>
-        <HStack id="header-container-middle-stack" className="relative">
+        <HStack id="header-container-middle-stack">
           <HeaderLogo />
         </HStack>
         <HStack
@@ -61,9 +61,9 @@ export const Header = () => {
           <Link id="header-container-account-link">
             <Icon as={() => CircleUserRound({ width: iconSize })} />
           </Link>
-          <Link id="header-container-cart-link">
+          {/* <Link id="header-container-cart-link">
             <Icon as={() => ShoppingBag({ width: iconSize })} />
-          </Link>
+          </Link> */}
         </HStack>
       </HStack>
       <SearchBarModal
@@ -76,9 +76,9 @@ export const Header = () => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 20,
+    paddingTop: 14,
     paddingRight: 24,
-    paddingBottom: 20,
+    paddingBottom: 14,
     paddingLeft: 24,
   },
 });
