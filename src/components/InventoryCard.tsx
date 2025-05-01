@@ -6,33 +6,53 @@ import { HStack } from './ui/hstack';
 import { Image } from './ui/image';
 import { Text } from './ui/text';
 import { VStack } from './ui/vstack';
+import { commonStyles } from './styles';
 
 interface InventoryCardProps {
   readonly pokemonTcgCard: PokemonTCG.Card;
 }
 
 export const InventoryCard = ({ ...props }: InventoryCardProps) => {
+  const imageStyle = 'aspect-square h-full w-full rounded-lg';
+  const textSize = 'sm';
+  const textWeight = 'font-light'
+
   return (
-    <Card className="gap-2 rounded-lg bg-transparent p-0">
-      {/** ONE */}
+    <Card 
+      id={`inventory-grid-item-${props.pokemonTcgCard.id}`}
+      style={commonStyles.cardContainer}>
       <Image
+        id={`inventory-grid-item-image-${props.pokemonTcgCard.id}`}
+        className={imageStyle}
         source={{
           uri: props.pokemonTcgCard.images.large,
         }}
-        className="aspect-[3/3] h-auto w-full rounded-lg"
-        alt="image"
+        alt={`${props.pokemonTcgCard.name}`}
       />
-      {/** TWO */}
-      <HStack className="flex-col justify-between gap-2 sm:flex-row">
+      <HStack
+        id={`inventory-grid-item-info-${props.pokemonTcgCard.id}`}
+        style={{
+          ...commonStyles.spaceBetweenContent,
+          ...commonStyles.noSpacingContainer,
+        }}
+        className='flex-col sm:flex-row'
+      >
         <VStack>
-          <Text size="sm" className="font-light">
-            {props.pokemonTcgCard.set.name}
-          </Text>
-          <Heading size="sm" className="size-sm font-normal">
+          <Heading
+            id={`inventory-grid-item-name-${props.pokemonTcgCard.id}`}
+            size={textSize}
+          >
             {props.pokemonTcgCard.name}
           </Heading>
+          <Text
+            id={`inventory-grid-item-set-name-${props.pokemonTcgCard.id}`}
+            size={textSize}
+            className={textWeight}
+          >
+            {props.pokemonTcgCard.set.name}
+          </Text>
         </VStack>
-        <Text size="md" className="font-light">
+        <Text id={`inventory-grid-item-price-${props.pokemonTcgCard.id}`} className={textWeight}>
           $999.99
         </Text>
       </HStack>

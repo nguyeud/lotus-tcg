@@ -1,12 +1,13 @@
 import { StyleSheet } from 'react-native';
 
 export const commonStyles = StyleSheet.create({
-  centerContent: {
+  centerAlignItems: {
     alignItems: 'center',
+  },
+  centerContent: {
     justifyContent: 'center',
   },
   spaceBetweenContent: {
-    alignItems: 'center',
     justifyContent: 'space-between',
   },
   noSpacingContainer: {
@@ -28,12 +29,23 @@ export const commonStyles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1,
-    borderRadius: 6,
+    borderRadius: 4,
   },
   iconContainer: {
     gap: 18,
   },
   inputIconContainer: {
     paddingLeft: 12,
+  },
+  gridContainer: {
+    padding: 12,
+    columnGap: 12,
+    rowGap: 12,
+  },
+  cardContainer: {
+    padding: 4,
+    gap: 4,
+    borderRadius: 16,
+    backgroundColor: 'transparent'
   },
 });

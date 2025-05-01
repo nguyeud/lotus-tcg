@@ -5,7 +5,7 @@ import { getPokemonTcgCardsById } from '@/api/pokemon-tcg/pokemon-tcg-cards';
 import { InventoryGrid } from '@/components/InventoryGrid';
 import { ScrollView } from '@/components/ui/scroll-view';
 import { Spinner } from '@/components/ui/spinner';
-import { commonStyles } from '@/components/ui/styles';
+import { commonStyles } from '@/components/styles';
 
 // TODO: After Firebase implementation, remove constant
 const dummyCardIds: string[] = [
@@ -70,7 +70,7 @@ export default function Inventory() {
 
   return (
     <ScrollView
-      contentContainerStyle={commonStyles.centerContent}
+      contentContainerStyle={{...commonStyles.centerAlignItems, ...commonStyles.centerContent}}
       style={commonStyles.fullWidthContainer}
     >
       <InventoryGrid pokemonTcgCards={pokemonTcgCards} />

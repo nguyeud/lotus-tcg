@@ -7,7 +7,7 @@ import { HStack } from './ui/hstack';
 import { Icon } from './ui/icon';
 import { Modal, ModalBackdrop, ModalBody, ModalContent } from './ui/modal';
 import { Pressable } from './ui/pressable';
-import { commonStyles } from './ui/styles';
+import { commonStyles } from './styles';
 
 interface SearchBarModalProps {
   readonly showModal: boolean;
@@ -15,6 +15,9 @@ interface SearchBarModalProps {
 }
 
 export const SearchBarModal = ({ ...props }: SearchBarModalProps) => {
+  const iconSize = 20;
+  const buttonBorderOutline = 'border-outline-300';
+
   return (
     <Modal
       id="search-bar-modal"
@@ -29,7 +32,8 @@ export const SearchBarModal = ({ ...props }: SearchBarModalProps) => {
         size="full"
         style={{
           ...styles.modalContentContainer,
-          ...commonStyles.centerContent,
+          ...commonStyles.centerAlignItems,
+          ...commonStyles.centerContent
         }}
       >
         <ModalBody
@@ -47,9 +51,9 @@ export const SearchBarModal = ({ ...props }: SearchBarModalProps) => {
             <Pressable
               id="search-bar-modal-body-search-pressable"
               style={commonStyles.buttonContainer}
-              className="border-outline-300"
+              className={buttonBorderOutline}
             >
-              <Icon as={() => SlidersHorizontal({ width: 20 })} />
+              <Icon as={() => SlidersHorizontal({ width: iconSize })} />
             </Pressable>
           </HStack>
         </ModalBody>
@@ -60,9 +64,9 @@ export const SearchBarModal = ({ ...props }: SearchBarModalProps) => {
 
 const styles = StyleSheet.create({
   modalContentContainer: {
-    position: 'absolute',
-    top: 120,
     maxWidth: `${90}%`,
     justifyContent: 'space-between',
+    position: 'absolute',
+    top: 120,
   },
 });
