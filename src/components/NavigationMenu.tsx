@@ -5,7 +5,7 @@ import { Moon } from './icons/Moon';
 import { Scan } from './icons/Scan';
 import { Sun } from './icons/Sun';
 import { NavigationMenuItem } from './NavigationMenuItem';
-import { iconStyle } from './styles';
+import { appIconStyle } from './styles';
 import { Fab, FabIcon } from './ui/fab';
 import { Menu } from './ui/menu';
 
@@ -33,7 +33,7 @@ export const NavigationMenu = ({ ...props }: NavigationMenuProps) => {
             isDisabled={false}
             isPressed={false}
           >
-            <FabIcon as={() => Heart({ width: iconStyle.common.size })} />
+            <FabIcon as={() => Heart({ width: appIconStyle.common.size })} />
           </Fab>
         );
       }}
@@ -41,19 +41,19 @@ export const NavigationMenu = ({ ...props }: NavigationMenuProps) => {
       <NavigationMenuItem
         parentComponentId={componentId}
         key="Account"
-        icon={CircleUserRound({ width: iconStyle.menu.size })}
+        icon={CircleUserRound({ width: appIconStyle.menu.size })}
         textValue="Account"
       />
       <NavigationMenuItem
         parentComponentId={componentId}
         key="CardScanner"
-        icon={Scan({ width: iconStyle.menu.size })}
+        icon={Scan({ width: appIconStyle.menu.size })}
         textValue="Card Scanner"
       />
       <NavigationMenuItem
         parentComponentId={componentId}
         key="Manage Inventory"
-        icon={Layers({ width: iconStyle.menu.size })}
+        icon={Layers({ width: appIconStyle.menu.size })}
         textValue="Manage Inventory"
       />
       <NavigationMenuItem
@@ -61,8 +61,8 @@ export const NavigationMenu = ({ ...props }: NavigationMenuProps) => {
         key="ThemeToggle"
         icon={
           props.colorMode === 'light'
-            ? Moon({ width: iconStyle.menu.size })
-            : Sun({ width: iconStyle.menu.size })
+            ? Moon({ width: appIconStyle.menu.size })
+            : Sun({ width: appIconStyle.menu.size })
         }
         textValue={props.colorMode === 'light' ? 'Dark Mode' : 'Light Mode'}
         onPress={props.toggleColorMode}

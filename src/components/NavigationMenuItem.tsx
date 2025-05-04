@@ -1,4 +1,4 @@
-import { iconStyle, textStyle } from './styles';
+import { appIconStyle, appTextStyle } from './styles';
 import { Icon } from './ui/icon';
 import { MenuItem, MenuItemLabel } from './ui/menu';
 
@@ -20,8 +20,10 @@ export const NavigationMenuItem = ({ ...props }: NavigationMenuItemProps) => {
       key={props.key}
       textValue={props.textValue ?? props.key}
     >
-      <Icon as={() => props.icon} style={iconStyle.menu.style} />
-      <MenuItemLabel className={textStyle.label}>{props.label}</MenuItemLabel>
+      <Icon as={() => props.icon} style={appIconStyle.menu.style} />
+      <MenuItemLabel className={appTextStyle.label}>
+        {props.label}
+      </MenuItemLabel>
     </MenuItem>
   );
 };
