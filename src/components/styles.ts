@@ -1,10 +1,10 @@
 import { StyleSheet } from 'react-native';
 
-export const buttonStyle = {
+export const appButtonStyle = {
   border: 'border border-outline-300',
 };
 
-export const iconStyle = {
+export const appIconStyle = {
   common: {
     size: 24,
   },
@@ -19,7 +19,7 @@ export const iconStyle = {
   },
 };
 
-export const modalStyle = StyleSheet.create({
+export const appModalStyle = StyleSheet.create({
   content: {
     maxWidth: `${90}%`,
     position: 'absolute',
@@ -27,14 +27,14 @@ export const modalStyle = StyleSheet.create({
   },
 });
 
-export const textStyle = {
+export const appTextStyle = {
   header: 'text-md',
   subheader: 'text-sm font-light',
   text: 'text-md font-light',
   label: 'text-sm',
 };
 
-export const responsiveStyle = {
+export const appResponsiveStyle = {
   layout: 'w-full sm:w-4/5 max-w-5xl',
   grid: 'grid-cols-2 md:grid-cols-3 lg:grid-cols-4',
   gridItem: 'col-span-1',
@@ -43,7 +43,7 @@ export const responsiveStyle = {
   imageSquare: 'aspect-square flex-1 h-full w-full rounded-lg',
 };
 
-export const containerStyleSheet = StyleSheet.create({
+export const appContainerStyle = StyleSheet.create({
   centerAlignItems: {
     alignItems: 'center',
   },

@@ -1,7 +1,7 @@
 import { PokemonTCG } from 'pokemon-tcg-sdk-typescript';
 
 import { InventoryCard } from './InventoryCard';
-import { containerStyleSheet, responsiveStyle } from './styles';
+import { appContainerStyle, appResponsiveStyle } from './styles';
 import { GridItem } from './ui/grid';
 
 interface InventoryGridItemProps {
@@ -20,9 +20,9 @@ export const InventoryGridItem = ({ ...props }: InventoryGridItemProps) => {
     <GridItem
       id={`${props.parentComponentId}-${componentId}-${props.pokemonTcgCard.id}`}
       key={props.pokemonTcgCard.id}
-      style={containerStyleSheet.noSpacingContainer}
+      style={appContainerStyle.noSpacingContainer}
       _extra={{
-        className: responsiveStyle.gridItem,
+        className: appResponsiveStyle.gridItem,
       }}
     >
       <InventoryCard pokemonTcgCard={props.pokemonTcgCard} />

@@ -3,10 +3,10 @@ import React from 'react';
 import { SlidersHorizontal } from './icons/SlidersHorizontal';
 import { SearchBar } from './SearchBar';
 import {
-  buttonStyle,
-  containerStyleSheet,
-  iconStyle,
-  modalStyle,
+  appButtonStyle,
+  appContainerStyle,
+  appIconStyle,
+  appModalStyle,
 } from './styles';
 import { HStack } from './ui/hstack';
 import { Icon } from './ui/icon';
@@ -34,30 +34,30 @@ export const SearchBarModal = ({ ...props }: SearchBarModalProps) => {
         id={`${componentId}-content`}
         size="full"
         style={{
-          ...modalStyle.content,
-          ...containerStyleSheet.centerAlignItems,
-          ...containerStyleSheet.spaceBetweenContent,
+          ...appModalStyle.content,
+          ...appContainerStyle.centerAlignItems,
+          ...appContainerStyle.spaceBetweenContent,
         }}
       >
         <ModalBody
           id={`${componentId}-body`}
           style={{
-            ...containerStyleSheet.fullWidthContainer,
-            ...containerStyleSheet.noSpacingContainer,
+            ...appContainerStyle.fullWidthContainer,
+            ...appContainerStyle.noSpacingContainer,
           }}
         >
           <HStack
             id={`${componentId}-body-stack`}
-            style={containerStyleSheet.iconContainer}
+            style={appContainerStyle.iconContainer}
           >
             <SearchBar />
             <Pressable
               id={`${componentId}-body-search-pressable`}
-              style={containerStyleSheet.buttonContainer}
-              className={buttonStyle.border}
+              style={appContainerStyle.buttonContainer}
+              className={appButtonStyle.border}
             >
               <Icon
-                as={() => SlidersHorizontal({ width: iconStyle.button.size })}
+                as={() => SlidersHorizontal({ width: appIconStyle.button.size })}
               />
             </Pressable>
           </HStack>

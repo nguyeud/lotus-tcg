@@ -5,7 +5,7 @@ import { HeaderLogo } from './HeaderLogo';
 import { Search } from './icons/Search';
 import { ShoppingBag } from './icons/ShoppingBag';
 import { SearchBarModal } from './SearchBarModal';
-import { containerStyleSheet, iconStyle, responsiveStyle } from './styles';
+import { appContainerStyle, appIconStyle, appResponsiveStyle } from './styles';
 import { Box } from './ui/box';
 import { HStack } from './ui/hstack';
 import { Icon } from './ui/icon';
@@ -27,18 +27,18 @@ export const Header = () => {
     <Box
       id={componentId}
       style={{
-        ...containerStyleSheet.centerAlignItems,
-        ...containerStyleSheet.centerContent,
+        ...appContainerStyle.centerAlignItems,
+        ...appContainerStyle.centerContent,
       }}
     >
       <HStack
         id={`${componentId}-main-stack`}
         style={{
           ...styles.container,
-          ...containerStyleSheet.centerAlignItems,
-          ...containerStyleSheet.spaceBetweenContent,
+          ...appContainerStyle.centerAlignItems,
+          ...appContainerStyle.spaceBetweenContent,
         }}
-        className={responsiveStyle.layout}
+        className={appResponsiveStyle.layout}
       >
         <HStack id={`${componentId}-left-stack`}>
           <Pressable
@@ -47,7 +47,7 @@ export const Header = () => {
               setShowSearchBarModal(true);
             }}
           >
-            <Icon as={() => Search({ width: iconStyle.common.size })} />
+            <Icon as={() => Search({ width: appIconStyle.common.size })} />
           </Pressable>
         </HStack>
         <HStack id={`${componentId}-middle-stack`}>
@@ -55,10 +55,10 @@ export const Header = () => {
         </HStack>
         <HStack
           id={`${componentId}-right-stack`}
-          style={containerStyleSheet.iconContainer}
+          style={appContainerStyle.iconContainer}
         >
           <Link id={`${componentId}-cart-link`}>
-            <Icon as={() => ShoppingBag({ width: iconStyle.common.size })} />
+            <Icon as={() => ShoppingBag({ width: appIconStyle.common.size })} />
           </Link>
         </HStack>
       </HStack>

@@ -5,7 +5,7 @@ import {
   StyledSubheader,
   StyledText,
 } from './custom_ui/CustomText';
-import { containerStyleSheet, responsiveStyle } from './styles';
+import { appContainerStyle, appResponsiveStyle } from './styles';
 import { Card } from './ui/card';
 import { HStack } from './ui/hstack';
 import { Image } from './ui/image';
@@ -21,11 +21,11 @@ export const InventoryCard = ({ ...props }: InventoryCardProps) => {
   return (
     <Card
       id={`${componentId}-${props.pokemonTcgCard.id}`}
-      style={containerStyleSheet.cardContainer}
+      style={appContainerStyle.cardContainer}
     >
       <Image
         id={`${componentId}-${props.pokemonTcgCard.id}-image`}
-        className={responsiveStyle.imageSquare}
+        className={appResponsiveStyle.imageSquare}
         source={{
           uri: props.pokemonTcgCard.images.large,
         }}
@@ -34,10 +34,10 @@ export const InventoryCard = ({ ...props }: InventoryCardProps) => {
       <HStack
         id={`${componentId}-${props.pokemonTcgCard.id}-info`}
         style={{
-          ...containerStyleSheet.spaceBetweenContent,
-          ...containerStyleSheet.noSpacingContainer,
+          ...appContainerStyle.spaceBetweenContent,
+          ...appContainerStyle.noSpacingContainer,
         }}
-        className={responsiveStyle.hStack}
+        className={appResponsiveStyle.hStack}
       >
         <VStack>
           {StyledHeader.getElement({

@@ -17,7 +17,7 @@ import {
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useEffect, useRef, useState } from 'react';
 import React from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
@@ -28,7 +28,7 @@ import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
 // Set theme
 let defaultTheme: 'dark' | 'light' = 'light';
 
-type ThemeContextType = {
+export type ThemeContextType = {
   colorMode?: 'dark' | 'light';
   toggleColorMode?: () => void;
 };
@@ -43,6 +43,7 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [colorMode, setColorMode] = useState<'dark' | 'light'>(defaultTheme);
+  const colorModeRef = useRef(colorMode);
 
   const [fontsLoaded] = useFonts({
     Inter_300Light,
@@ -65,15 +66,18 @@ export default function RootLayout() {
 
   const toggleColorMode = async () => {
     setColorMode((prev) => (prev === 'light' ? 'dark' : 'light'));
+    colorModeRef.current = colorMode;
   };
 
   return (
     <GestureHandlerRootView>
-      <GluestackUIProvider mode={colorMode}>
-        <ThemeProvider value={colorMode === 'dark' ? DarkTheme : DefaultTheme}>
+      <GluestackUIProvider mode={colorModeRef.current}>
+        <ThemeProvider
+          value={colorModeRef.current === 'dark' ? DarkTheme : DefaultTheme}
+        >
           <Header />
           <NavigationMenu
-            colorMode={colorMode}
+            colorMode={colorModeRef.current}
             toggleColorMode={toggleColorMode}
           />
           <Stack>

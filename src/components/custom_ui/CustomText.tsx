@@ -1,4 +1,4 @@
-import { textStyle } from '../styles';
+import { appTextStyle } from '../styles';
 import { Text } from '../ui/text';
 
 interface CustomStyledTextElementProps {
@@ -33,9 +33,9 @@ export class CustomStyledText {
 }
 
 export const StyledHeader = new CustomStyledText({
-  textStyle: textStyle.header,
+  textStyle: appTextStyle.header,
 });
 export const StyledSubheader = new CustomStyledText({
-  textStyle: textStyle.subheader,
+  textStyle: appTextStyle.subheader,
 });
-export const StyledText = new CustomStyledText({ textStyle: textStyle.text });
+export const StyledText = new CustomStyledText({ textStyle: appTextStyle.text });

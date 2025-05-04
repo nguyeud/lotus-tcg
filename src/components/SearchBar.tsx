@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { Search } from './icons/Search';
-import { containerStyleSheet, iconStyle } from './styles';
+import { appContainerStyle, appIconStyle } from './styles';
 import { Input, InputField, InputIcon, InputSlot } from './ui/input';
 
 export const SearchBar = () => {
@@ -10,12 +10,12 @@ export const SearchBar = () => {
   const [searchInput, setSearchInput] = useState<string>('');
 
   return (
-    <Input id={componentId} style={containerStyleSheet.flexContainer}>
+    <Input id={componentId} style={appContainerStyle.flexContainer}>
       <InputSlot
         id={`${componentId}-input-slot`}
-        style={containerStyleSheet.inputIconContainer}
+        style={appContainerStyle.inputIconContainer}
       >
-        <InputIcon as={() => Search({ width: iconStyle.button.size })} />
+        <InputIcon as={() => Search({ width: appIconStyle.button.size })} />
       </InputSlot>
       <InputField
         id={`${componentId}-input-field`}
