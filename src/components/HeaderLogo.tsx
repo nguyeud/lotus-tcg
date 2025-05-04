@@ -2,16 +2,19 @@ import { Image } from './ui/image';
 import { Pressable } from './ui/pressable';
 
 export const HeaderLogo = () => {
-  const imageFile = '@/assets/images/lotus-tcg-logo.png';
+  const componentId = 'header-logo';
+
+  const imageName = 'Lotus TCG Logo';
+  const imageFilePath = `@/assets/images/lotus-tcg-logo.png`;
   const imageSize = 'h-12 w-14';
 
   return (
-    <Pressable id="header-logo-pressable">
+    <Pressable id={`${componentId}-pressable`}>
       <Image
-        id="header-logo-pressable-image"
-        source={require(imageFile)}
-        alt="Lotus TCG logo"
+        id={`${componentId}-pressable-image`}
+        source={require(imageFilePath)}
         className={imageSize}
+        alt={imageName}
       />
     </Pressable>
   );

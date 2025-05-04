@@ -1,6 +1,49 @@
 import { StyleSheet } from 'react-native';
 
-export const commonStyles = StyleSheet.create({
+export const buttonStyle = {
+  border: 'border border-outline-300',
+};
+
+export const iconStyle = {
+  common: {
+    size: 24,
+  },
+  button: {
+    size: 20,
+  },
+  menu: {
+    size: 18,
+    style: {
+      paddingRight: 16,
+    },
+  },
+};
+
+export const modalStyle = StyleSheet.create({
+  content: {
+    maxWidth: `${90}%`,
+    position: 'absolute',
+    top: 120,
+  },
+});
+
+export const textStyle = {
+  header: 'text-md',
+  subheader: 'text-sm font-light',
+  text: 'text-md font-light',
+  label: 'text-sm',
+};
+
+export const responsiveStyle = {
+  layout: 'w-full sm:w-4/5 max-w-5xl',
+  grid: 'grid-cols-2 md:grid-cols-3 lg:grid-cols-4',
+  gridItem: 'col-span-1',
+  hStack: 'flex-col sm:flex-row',
+  vStack: 'flex-row sm:flex-col',
+  imageSquare: 'aspect-square flex-1 h-full w-full rounded-lg',
+};
+
+export const containerStyleSheet = StyleSheet.create({
   centerAlignItems: {
     alignItems: 'center',
   },
@@ -9,6 +52,9 @@ export const commonStyles = StyleSheet.create({
   },
   spaceBetweenContent: {
     justifyContent: 'space-between',
+  },
+  flexContainer: {
+    flex: 1,
   },
   noSpacingContainer: {
     margin: 0,

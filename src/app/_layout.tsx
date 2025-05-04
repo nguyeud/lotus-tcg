@@ -17,14 +17,12 @@ import {
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import { StatusBar } from 'expo-status-bar';
-import { MoonIcon, SunIcon } from 'lucide-react-native';
 import { createContext, useEffect, useState } from 'react';
 import React from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import { Header } from '@/components/Header';
-import { Fab, FabIcon } from '@/components/ui/fab';
+import { NavigationMenu } from '@/components/NavigationMenu';
 import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
 
 // Set theme
@@ -44,6 +42,8 @@ export const ThemeContext = createContext<ThemeContextType>({
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
+  const [colorMode, setColorMode] = useState<'dark' | 'light'>(defaultTheme);
+
   const [fontsLoaded] = useFonts({
     Inter_300Light,
     Inter_400Regular,
@@ -52,12 +52,6 @@ export default function RootLayout() {
     Inter_700Bold,
     Inter_900Black,
   });
-
-  const [colorMode, setColorMode] = useState<'dark' | 'light'>(defaultTheme);
-
-  const toggleColorMode = async () => {
-    setColorMode((prev) => (prev === 'light' ? 'dark' : 'light'));
-  };
 
   useEffect(() => {
     if (fontsLoaded) {
@@ -69,27 +63,25 @@ export default function RootLayout() {
     return null;
   }
 
+  const toggleColorMode = async () => {
+    setColorMode((prev) => (prev === 'light' ? 'dark' : 'light'));
+  };
+
   return (
     <GestureHandlerRootView>
       <GluestackUIProvider mode={colorMode}>
         <ThemeProvider value={colorMode === 'dark' ? DarkTheme : DefaultTheme}>
           <Header />
+          <NavigationMenu
+            colorMode={colorMode}
+            toggleColorMode={toggleColorMode}
+          />
           <Stack>
+            {/* Tabs using the Expo router */}
             {/* <Stack.Screen name="(tabs)" options={{ headerShown: false }} /> */}
             <Stack.Screen name="index" options={{ headerShown: false }} />
             <Stack.Screen name="+not-found" />
           </Stack>
-          <StatusBar style="auto" />
-          <Fab
-            size="md"
-            placement="bottom right"
-            isHovered={false}
-            isDisabled={false}
-            isPressed={false}
-            onPress={toggleColorMode}
-          >
-            <FabIcon as={colorMode === 'light' ? MoonIcon : SunIcon} />
-          </Fab>
         </ThemeProvider>
       </GluestackUIProvider>
     </GestureHandlerRootView>

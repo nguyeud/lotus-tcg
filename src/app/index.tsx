@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 import { getPokemonTcgCardsById } from '@/api/pokemon-tcg/pokemon-tcg-cards';
 import { InventoryGrid } from '@/components/InventoryGrid';
-import { commonStyles } from '@/components/styles';
+import { containerStyleSheet } from '@/components/styles';
 import { ScrollView } from '@/components/ui/scroll-view';
 import { Spinner } from '@/components/ui/spinner';
 
@@ -71,10 +71,11 @@ export default function Inventory() {
   return (
     <ScrollView
       contentContainerStyle={{
-        ...commonStyles.centerAlignItems,
-        ...commonStyles.centerContent,
+        ...containerStyleSheet.centerAlignItems,
+        ...containerStyleSheet.centerContent,
       }}
-      style={commonStyles.fullWidthContainer}
+      style={containerStyleSheet.fullWidthContainer}
+      className="bg-transparent"
     >
       <InventoryGrid pokemonTcgCards={pokemonTcgCards} />
     </ScrollView>
