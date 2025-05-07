@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 
 import { getPokemonTcgCardsById } from '@/api/pokemon-tcg/pokemon-tcg-cards';
 import { InventoryGrid } from '@/components/InventoryGrid';
+import { NavigationMenu } from '@/components/NavigationMenu';
 import { appContainerStyle } from '@/components/styles';
 import { ScrollView } from '@/components/ui/scroll-view';
 import { Spinner } from '@/components/ui/spinner';
@@ -47,7 +48,7 @@ const dummyCardIds: string[] = [
   'sm12-241',
 ];
 
-export default function Inventory() {
+export default function HomeScreen() {
   const [isLoading, setLoading] = useState(true);
   const [pokemonTcgCards, setPokemonTcgCards] = useState<PokemonTCG.Card[]>([]);
 
@@ -69,15 +70,18 @@ export default function Inventory() {
   }
 
   return (
-    <ScrollView
-      contentContainerStyle={{
-        ...appContainerStyle.centerAlignItems,
-        ...appContainerStyle.centerContent,
-      }}
-      style={appContainerStyle.fullWidthContainer}
-      className="bg-transparent"
-    >
-      <InventoryGrid pokemonTcgCards={pokemonTcgCards} />
-    </ScrollView>
+    <>
+      <NavigationMenu />
+      <ScrollView
+        contentContainerStyle={{
+          ...appContainerStyle.centerAlignItems,
+          ...appContainerStyle.centerContent,
+        }}
+        style={appContainerStyle.fullWidthContainer}
+        className="bg-transparent"
+      >
+        <InventoryGrid pokemonTcgCards={pokemonTcgCards} />
+      </ScrollView>
+    </>
   );
 }

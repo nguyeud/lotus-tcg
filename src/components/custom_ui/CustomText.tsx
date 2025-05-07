@@ -38,4 +38,6 @@ export const StyledHeader = new CustomStyledText({
 export const StyledSubheader = new CustomStyledText({
   textStyle: appTextStyle.subheader,
 });
-export const StyledText = new CustomStyledText({ textStyle: appTextStyle.text });
+export const StyledText = new CustomStyledText({
+  textStyle: appTextStyle.text,
+});

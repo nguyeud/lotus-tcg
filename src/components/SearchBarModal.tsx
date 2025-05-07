@@ -57,7 +57,9 @@ export const SearchBarModal = ({ ...props }: SearchBarModalProps) => {
               className={appButtonStyle.border}
             >
               <Icon
-                as={() => SlidersHorizontal({ width: appIconStyle.button.size })}
+                as={() =>
+                  SlidersHorizontal({ width: appIconStyle.button.size })
+                }
               />
             </Pressable>
           </HStack>

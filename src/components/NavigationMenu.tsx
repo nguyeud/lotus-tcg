@@ -1,3 +1,5 @@
+import { useRef } from 'react';
+
 import { CircleUserRound } from './icons/CircleUserRound';
 import { Heart } from './icons/Heart';
 import { Layers } from './icons/Layers';
@@ -6,16 +8,16 @@ import { Scan } from './icons/Scan';
 import { Sun } from './icons/Sun';
 import { NavigationMenuItem } from './NavigationMenuItem';
 import { appIconStyle } from './styles';
+import { useTheme } from './ThemeProvider';
 import { Fab, FabIcon } from './ui/fab';
 import { Menu } from './ui/menu';
 
-interface NavigationMenuProps {
-  readonly colorMode: 'light' | 'dark';
-  readonly toggleColorMode: () => void;
-}
-
-export const NavigationMenu = ({ ...props }: NavigationMenuProps) => {
+export const NavigationMenu = () => {
   const componentId = 'navigation-menu';
+
+  const { theme, toggleTheme } = useTheme();
+
+  const menuRef = useRef(null);
 
   return (
     <Menu
@@ -38,35 +40,46 @@ export const NavigationMenu = ({ ...props }: NavigationMenuProps) => {
         );
       }}
     >
-      <NavigationMenuItem
-        parentComponentId={componentId}
-        key="Account"
-        icon={CircleUserRound({ width: appIconStyle.menu.size })}
-        textValue="Account"
-      />
-      <NavigationMenuItem
-        parentComponentId={componentId}
-        key="CardScanner"
-        icon={Scan({ width: appIconStyle.menu.size })}
-        textValue="Card Scanner"
-      />
-      <NavigationMenuItem
-        parentComponentId={componentId}
-        key="Manage Inventory"
-        icon={Layers({ width: appIconStyle.menu.size })}
-        textValue="Manage Inventory"
-      />
-      <NavigationMenuItem
-        parentComponentId={componentId}
-        key="ThemeToggle"
-        icon={
-          props.colorMode === 'light'
-            ? Moon({ width: appIconStyle.menu.size })
-            : Sun({ width: appIconStyle.menu.size })
-        }
-        textValue={props.colorMode === 'light' ? 'Dark Mode' : 'Light Mode'}
-        onPress={props.toggleColorMode}
-      />
+      {NavigationMenuItem(
+        {
+          parentComponentId: componentId,
+          key: 'Account',
+          icon: CircleUserRound({ width: appIconStyle.menu.size }),
+          textValue: 'Account',
+        },
+        menuRef
+      )}
+      {NavigationMenuItem(
+        {
+          parentComponentId: componentId,
+          key: 'CardScanner',
+          icon: Scan({ width: appIconStyle.menu.size }),
+          textValue: 'Card Scanner',
+        },
+        menuRef
+      )}
+      {NavigationMenuItem(
+        {
+          parentComponentId: componentId,
+          key: 'ManageInventory',
+          icon: Layers({ width: appIconStyle.menu.size }),
+          textValue: 'Manage Inventory',
+        },
+        menuRef
+      )}
+      {NavigationMenuItem(
+        {
+          parentComponentId: componentId,
+          key: 'ThemeToggle',
+          icon:
+            theme === 'light'
+              ? Moon({ width: appIconStyle.menu.size })
+              : Sun({ width: appIconStyle.menu.size }),
+          textValue: theme === 'light' ? 'Dark Mode' : 'Light Mode',
+          onPress: toggleTheme,
+        },
+        menuRef
+      )}
     </Menu>
   );
 };
