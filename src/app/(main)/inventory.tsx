@@ -1,11 +1,13 @@
+import 'react-native-reanimated';
+
 import { PokemonTCG } from 'pokemon-tcg-sdk-typescript';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { getPokemonTcgCardsById } from '@/api/pokemon-tcg/pokemon-tcg-cards';
 import { InventoryGrid } from '@/components/InventoryGrid';
+import { appContainerStyle } from '@/components/styles';
 import { ScrollView } from '@/components/ui/scroll-view';
 import { Spinner } from '@/components/ui/spinner';
-import { commonStyles } from '@/components/styles';
 
 // TODO: After Firebase implementation, remove constant
 const dummyCardIds: string[] = [
@@ -48,6 +50,8 @@ const dummyCardIds: string[] = [
 ];
 
 export default function Inventory() {
+  console.log('====> Inventory');
+
   const [isLoading, setLoading] = useState(true);
   const [pokemonTcgCards, setPokemonTcgCards] = useState<PokemonTCG.Card[]>([]);
 
@@ -70,8 +74,12 @@ export default function Inventory() {
 
   return (
     <ScrollView
-      contentContainerStyle={{...commonStyles.centerAlignItems, ...commonStyles.centerContent}}
-      style={commonStyles.fullWidthContainer}
+      contentContainerStyle={{
+        ...appContainerStyle.centerAlignItems,
+        ...appContainerStyle.centerContent,
+      }}
+      style={appContainerStyle.fullWidthContainer}
+      className="bg-transparent"
     >
       <InventoryGrid pokemonTcgCards={pokemonTcgCards} />
     </ScrollView>

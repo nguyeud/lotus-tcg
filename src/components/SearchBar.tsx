@@ -1,25 +1,24 @@
 import React, { useState } from 'react';
 
 import { Search } from './icons/Search';
+import { appContainerStyle, appIconStyle } from './styles';
 import { Input, InputField, InputIcon, InputSlot } from './ui/input';
-import { commonStyles } from './styles';
 
 export const SearchBar = () => {
-  const responsiveContainerStyle = "flex-1"
-  const iconSize = 20;
+  const componentId = 'search-bar-container';
 
   const [searchInput, setSearchInput] = useState<string>('');
 
   return (
-    <Input id="search-bar-container" className={responsiveContainerStyle}>
+    <Input id={componentId} style={appContainerStyle.flexContainer}>
       <InputSlot
-        id="search-bar-container-icon"
-        style={commonStyles.inputIconContainer}
+        id={`${componentId}-input-slot`}
+        style={appContainerStyle.inputIconContainer}
       >
-        <InputIcon as={() => Search({ width: iconSize })} />
+        <InputIcon as={() => Search({ width: appIconStyle.button.size })} />
       </InputSlot>
       <InputField
-        id="search-bar-container-input"
+        id={`${componentId}-input-field`}
         type="text"
         placeholder="Search..."
         onChangeText={(input) => {
@@ -27,7 +26,7 @@ export const SearchBar = () => {
         }}
         onKeyPress={(input) => {
           if (input.key === 'Enter') {
-            console.log(searchInput);
+            console.log('Search input:', searchInput);
           }
         }}
         selectTextOnFocus={true}

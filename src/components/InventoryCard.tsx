@@ -1,60 +1,58 @@
 import { PokemonTCG } from 'pokemon-tcg-sdk-typescript';
 
+import {
+  StyledHeader,
+  StyledSubheader,
+  StyledText,
+} from './custom_ui/CustomText';
+import { appContainerStyle, appResponsiveStyle } from './styles';
 import { Card } from './ui/card';
-import { Heading } from './ui/heading';
 import { HStack } from './ui/hstack';
 import { Image } from './ui/image';
-import { Text } from './ui/text';
 import { VStack } from './ui/vstack';
-import { commonStyles } from './styles';
 
 interface InventoryCardProps {
   readonly pokemonTcgCard: PokemonTCG.Card;
 }
 
 export const InventoryCard = ({ ...props }: InventoryCardProps) => {
-  const imageStyle = 'aspect-square h-full w-full rounded-lg';
-  const textSize = 'sm';
-  const textWeight = 'font-light'
+  const componentId = 'inventory-card';
 
   return (
-    <Card 
-      id={`inventory-grid-item-${props.pokemonTcgCard.id}`}
-      style={commonStyles.cardContainer}>
+    <Card
+      id={`${componentId}-${props.pokemonTcgCard.id}`}
+      style={appContainerStyle.cardContainer}
+    >
       <Image
-        id={`inventory-grid-item-image-${props.pokemonTcgCard.id}`}
-        className={imageStyle}
+        id={`${componentId}-${props.pokemonTcgCard.id}-image`}
+        className={appResponsiveStyle.imageSquare}
         source={{
           uri: props.pokemonTcgCard.images.large,
         }}
         alt={`${props.pokemonTcgCard.name}`}
       />
       <HStack
-        id={`inventory-grid-item-info-${props.pokemonTcgCard.id}`}
+        id={`${componentId}-${props.pokemonTcgCard.id}-info`}
         style={{
-          ...commonStyles.spaceBetweenContent,
-          ...commonStyles.noSpacingContainer,
+          ...appContainerStyle.spaceBetweenContent,
+          ...appContainerStyle.noSpacingContainer,
         }}
-        className='flex-col sm:flex-row'
+        className={appResponsiveStyle.hStack}
       >
         <VStack>
-          <Heading
-            id={`inventory-grid-item-name-${props.pokemonTcgCard.id}`}
-            size={textSize}
-          >
-            {props.pokemonTcgCard.name}
-          </Heading>
-          <Text
-            id={`inventory-grid-item-set-name-${props.pokemonTcgCard.id}`}
-            size={textSize}
-            className={textWeight}
-          >
-            {props.pokemonTcgCard.set.name}
-          </Text>
+          {StyledHeader.getElement({
+            componentId: `${componentId}-${props.pokemonTcgCard.id}-name`,
+            text: props.pokemonTcgCard.name,
+          })}
+          {StyledSubheader.getElement({
+            componentId: `${componentId}-${props.pokemonTcgCard.id}-set-name`,
+            text: props.pokemonTcgCard.set.name,
+          })}
         </VStack>
-        <Text id={`inventory-grid-item-price-${props.pokemonTcgCard.id}`} className={textWeight}>
-          $999.99
-        </Text>
+        {StyledText.getElement({
+          componentId: `${componentId}-${props.pokemonTcgCard.id}-price`,
+          text: '$999.99',
+        })}
       </HStack>
     </Card>
   );

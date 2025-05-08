@@ -2,20 +2,18 @@ import React, { useState } from 'react';
 import { StyleSheet } from 'react-native';
 
 import { HeaderLogo } from './HeaderLogo';
-import { CircleUserRound } from './icons/CircleUserRound';
 import { Search } from './icons/Search';
 import { ShoppingBag } from './icons/ShoppingBag';
 import { SearchBarModal } from './SearchBarModal';
+import { appContainerStyle, appIconStyle, appResponsiveStyle } from './styles';
 import { Box } from './ui/box';
 import { HStack } from './ui/hstack';
 import { Icon } from './ui/icon';
 import { Link } from './ui/link';
 import { Pressable } from './ui/pressable';
-import { commonStyles } from './styles';
 
 export const Header = () => {
-  const responsiveContainerStyle = "w-full sm:w-4/5 max-w-5xl"
-  const iconSize = 24;
+  const componentId = 'header-container';
 
   const [showSearchBarModal, setShowSearchBarModal] = useState<true | false>(
     false
@@ -27,39 +25,40 @@ export const Header = () => {
 
   return (
     <Box
-      id="header-container"
-      style={{...commonStyles.centerAlignItems, ...commonStyles.centerContent}}
+      id={componentId}
+      style={{
+        ...appContainerStyle.centerAlignItems,
+        ...appContainerStyle.centerContent,
+      }}
     >
       <HStack
-        id="header-container-stack"
+        id={`${componentId}-main-stack`}
         style={{
           ...styles.container,
-          ...commonStyles.spaceBetweenContent,
+          ...appContainerStyle.centerAlignItems,
+          ...appContainerStyle.spaceBetweenContent,
         }}
-        className={responsiveContainerStyle}
+        className={appResponsiveStyle.layout}
       >
-        <HStack id="header-container-left-stack">
+        <HStack id={`${componentId}-left-stack`}>
           <Pressable
-            id="header-container-search-pressable"
+            id={`${componentId}-search-pressable`}
             onPress={() => {
               setShowSearchBarModal(true);
             }}
           >
-            <Icon as={() => Search({ width: iconSize })} />
+            <Icon as={() => Search({ width: appIconStyle.common.size })} />
           </Pressable>
         </HStack>
-        <HStack id="header-container-middle-stack" className='relative'>
+        <HStack id={`${componentId}-middle-stack`}>
           <HeaderLogo />
         </HStack>
         <HStack
-          id="header-container-right-stack"
-          style={commonStyles.iconContainer}
+          id={`${componentId}-right-stack`}
+          style={appContainerStyle.iconContainer}
         >
-          <Link id="header-container-account-link">
-            <Icon as={() => CircleUserRound({ width: iconSize })} />
-          </Link>
-          <Link id="header-container-cart-link">
-            <Icon as={() => ShoppingBag({ width: iconSize })} />
+          <Link id={`${componentId}-cart-link`}>
+            <Icon as={() => ShoppingBag({ width: appIconStyle.common.size })} />
           </Link>
         </HStack>
       </HStack>
@@ -73,9 +72,9 @@ export const Header = () => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 20,
+    paddingTop: 14,
     paddingRight: 24,
-    paddingBottom: 20,
+    paddingBottom: 14,
     paddingLeft: 24,
   },
 });

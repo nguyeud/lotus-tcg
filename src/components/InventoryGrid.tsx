@@ -1,39 +1,31 @@
 import { PokemonTCG } from 'pokemon-tcg-sdk-typescript';
 
-import { InventoryCard } from './InventoryCard';
-import { Grid, GridItem } from './ui/grid';
-import { commonStyles } from './styles';
+import { InventoryGridItem } from './InventoryGridItem';
+import { appContainerStyle, appResponsiveStyle } from './styles';
+import { Grid } from './ui/grid';
 
 interface InventoryGridProps {
   readonly pokemonTcgCards: PokemonTCG.Card[];
 }
 
 export const InventoryGrid = ({ ...props }: InventoryGridProps) => {
-  const responsiveContainerStyle = "w-full sm:w-4/5 max-w-5xl"
-  const gridStyle = "grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
-  const gridItemStyle = 'col-span-1'
-  
+  const componentId = 'inventory-grid';
+
   return (
     <Grid
-      id='inventory-grid'
-      style={commonStyles.gridContainer}
-      className={responsiveContainerStyle}
+      id={componentId}
+      style={appContainerStyle.gridContainer}
+      className={appResponsiveStyle.layout}
       _extra={{
-        className: gridStyle,
+        className: appResponsiveStyle.grid,
       }}
     >
-      {props.pokemonTcgCards.map((card) => {
+      {props.pokemonTcgCards.map((tcgCard) => {
         return (
-          <GridItem
-            id={`inventory-grid-item-${card.id}`}
-            key={card.id}
-            style={commonStyles.noSpacingContainer}
-            _extra={{
-              className: gridItemStyle,
-            }}
-          >
-            <InventoryCard pokemonTcgCard={card} />
-          </GridItem>
+          <InventoryGridItem
+            parentComponentId={componentId}
+            pokemonTcgCard={tcgCard}
+          />
         );
       })}
     </Grid>
