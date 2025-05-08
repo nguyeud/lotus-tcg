@@ -28,12 +28,12 @@ export const NavigationMenu = () => {
         return (
           <Fab
             {...triggerProps}
-            className="bg-black text-white dark:bg-white dark:text-black"
             placement="bottom right"
             size="lg"
             isHovered={false}
             isDisabled={false}
             isPressed={false}
+            className="bg-inherit text-inherit dark:bg-inherit dark:text-inherit"
           >
             <FabIcon as={() => Heart({ width: appIconStyle.common.size })} />
           </Fab>

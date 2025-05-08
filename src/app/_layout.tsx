@@ -1,5 +1,6 @@
 import 'react-native-reanimated';
 import './global.css';
+import 'react-native-reanimated';
 
 import {
   Inter_300Light,
@@ -15,15 +16,16 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import React from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { Header } from '@/components/Header';
 import { ThemeProvider } from '@/components/ThemeProvider';
-import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
+  console.log('====> RootLayout');
+
   const [fontsLoaded] = useFonts({
     Inter_300Light,
     Inter_400Regular,
@@ -45,17 +47,14 @@ export default function RootLayout() {
 
   return (
     <GestureHandlerRootView>
-      <GluestackUIProvider>
+      <SafeAreaView>
         <ThemeProvider>
-          <Header />
           <Stack>
-            {/* Tabs using the Expo router */}
-            {/* <Stack.Screen name="(tabs)" options={{ headerShown: false }} /> */}
-            <Stack.Screen name="index" options={{ headerShown: false }} />
+            <Stack.Screen name="(main)" options={{ headerShown: false }} />
             <Stack.Screen name="+not-found" />
           </Stack>
         </ThemeProvider>
-      </GluestackUIProvider>
+      </SafeAreaView>
     </GestureHandlerRootView>
   );
 }

@@ -13,8 +13,9 @@ export const ThemeContext = createContext<ThemeContextType | undefined>(
   undefined
 );
 
-// TODO: Implement local storage of theme preference
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
+  console.log('====> ThemeProvider');
+
   const [theme, setTheme] = useState<Theme>(defaultTheme);
 
   const toggleTheme = async () => {
@@ -32,7 +33,9 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
 export const useTheme = () => {
   const themeContext = useContext(ThemeContext);
   if (themeContext === undefined) {
-    throw new Error('Error: useTheme must be used within a ThemeProvider');
+    throw new Error(
+      'Error: To use useTheme as a context, it must be used within a ThemeProvider.'
+    );
   }
   return themeContext;
 };
