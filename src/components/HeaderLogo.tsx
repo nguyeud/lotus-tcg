@@ -6,7 +6,7 @@ export const HeaderLogo = () => {
 
   const imageName = 'Lotus TCG Logo';
   const imageFilePath = `@/assets/images/lotus-tcg-logo.png`;
-  const imageSize = 'h-12 w-14';
+  const imageSize = 'h-12 w-12';
 
   return (
     <Pressable id={`${componentId}-pressable`}>
