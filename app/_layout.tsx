@@ -6,14 +6,16 @@ import {
   Theme,
   ThemeProvider,
 } from "@react-navigation/native";
-import { Stack } from "expo-router";
+import { useFonts } from "expo-font";
+import { NotoSerifDisplay_800ExtraBold } from "@expo-google-fonts/noto-serif-display";
+import { Poppins_500Medium } from "@expo-google-fonts/poppins";
+import { SplashScreen, Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import * as React from "react";
 import { Appearance, Platform } from "react-native";
 import { NAV_THEME } from "@/lib/constants";
 import { useColorScheme } from "@/lib/useColorScheme";
 import { PortalHost } from "@rn-primitives/portal";
-import { ThemeToggle } from "@/components/ThemeToggle";
 import { setAndroidNavigationBar } from "@/lib/android-navigation-bar";
 
 const LIGHT_THEME: Theme = {
@@ -36,21 +38,33 @@ const usePlatformSpecificSetup = Platform.select({
   default: noop,
 });
 
+SplashScreen.preventAutoHideAsync();
+
 export default function RootLayout() {
   usePlatformSpecificSetup();
   const { isDarkColorScheme } = useColorScheme();
+
+  const [loaded, error] = useFonts({
+    NotoSerifDisplay_800ExtraBold,
+    Poppins_500Medium,
+  });
+
+  React.useEffect(() => {
+    if (loaded || error) {
+      SplashScreen.hideAsync();
+    }
+  }, [loaded, error]);
+
+  if (!loaded && !error) {
+    return null;
+  }
 
   return (
     <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
       <StatusBar style={isDarkColorScheme ? "light" : "dark"} />
       <Stack>
-        <Stack.Screen
-          name="index"
-          options={{
-            title: "Starter Base",
-            headerRight: () => <ThemeToggle />,
-          }}
-        />
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="+not-found" options={{ headerShown: false }} />
       </Stack>
       <PortalHost />
     </ThemeProvider>

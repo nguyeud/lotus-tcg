@@ -4,6 +4,8 @@ import { MoonStar } from "@/lib/icons/MoonStar";
 import { Sun } from "@/lib/icons/Sun";
 import { useColorScheme } from "@/lib/useColorScheme";
 
+export type ThemeScheme = "light" | "dark" | undefined;
+
 export function ThemeToggle() {
   const { isDarkColorScheme, setColorScheme } = useColorScheme();
 
