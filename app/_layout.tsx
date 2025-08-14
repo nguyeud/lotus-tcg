@@ -13,18 +13,18 @@ import { SplashScreen, Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import * as React from "react";
 import { Appearance, Platform } from "react-native";
-import { NAV_THEME } from "@/lib/constants";
+import { ThemeColor } from "@/lib/theme";
 import { useColorScheme } from "@/lib/useColorScheme";
 import { PortalHost } from "@rn-primitives/portal";
 import { setAndroidNavigationBar } from "@/lib/android-navigation-bar";
 
 const LIGHT_THEME: Theme = {
   ...DefaultTheme,
-  colors: NAV_THEME.light,
+  colors: ThemeColor.light,
 };
 const DARK_THEME: Theme = {
   ...DarkTheme,
-  colors: NAV_THEME.dark,
+  colors: ThemeColor.dark,
 };
 
 export {

@@ -4,12 +4,12 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardHeader } from "@/components/ui/card";
 import { Text } from "@/components/ui/text";
 import { useColorScheme } from "nativewind";
-import { ThemeScheme } from "@/components/ThemeToggle";
+import { ThemeColorScheme } from "@/components/ThemeToggle";
 
 export default function ContactTab() {
   const { colorScheme } = useColorScheme();
 
-  const logo = (colorScheme: ThemeScheme) => {
+  const logo = (colorScheme: ThemeColorScheme) => {
     if (colorScheme === "dark") {
       return (
         <AvatarImage
