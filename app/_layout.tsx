@@ -7,8 +7,8 @@ import {
   ThemeProvider,
 } from "@react-navigation/native";
 import { useFonts } from "expo-font";
-import { NotoSerifDisplay_800ExtraBold } from "@expo-google-fonts/noto-serif-display";
-import { Poppins_500Medium } from "@expo-google-fonts/poppins";
+import { Lato_100Thin, Lato_300Light, Lato_400Regular, Lato_700Bold } from "@expo-google-fonts/lato";
+import { NotoSerifDisplay_400Regular, NotoSerifDisplay_500Medium, NotoSerifDisplay_600SemiBold, NotoSerifDisplay_700Bold, NotoSerifDisplay_800ExtraBold } from "@expo-google-fonts/noto-serif-display";
 import { SplashScreen, Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import * as React from "react";
@@ -45,8 +45,15 @@ export default function RootLayout() {
   const { isDarkColorScheme } = useColorScheme();
 
   const [loaded, error] = useFonts({
+    Lato_100Thin,
+    Lato_300Light,
+    Lato_400Regular,
+    Lato_700Bold,
+    NotoSerifDisplay_400Regular,
+    NotoSerifDisplay_500Medium,
+    NotoSerifDisplay_600SemiBold,
+    NotoSerifDisplay_700Bold,
     NotoSerifDisplay_800ExtraBold,
-    Poppins_500Medium,
   });
 
   React.useEffect(() => {
